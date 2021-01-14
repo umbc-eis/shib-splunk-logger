@@ -1,0 +1,9 @@
+version: '3.1'
+services:
+  syslog:
+    build:
+      context: ./syslog
+    image: umbc/idp-logger:latest
+    ports:
+      - 5140:514/udp
+    restart: always
