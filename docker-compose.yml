@@ -7,9 +7,16 @@ services:
     ports:
       - 5140:514/udp
     restart: always
+    volumes:
+      - logs-vol:/var/log/umbc-idp
 
   universalforwarder:
     environment:
       SPLUNK_START_ARGS: --accept-license
       SPLUNK_PASSWORD: ${SPLUNK_PASSWORD}
     image: splunk/universalforwarder:latest
+    volumes:
+      - logs-vol:/var/log/umbc-idp
+
+volumes:
+  logs-vol:
