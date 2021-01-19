@@ -7,3 +7,9 @@ services:
     ports:
       - 5140:514/udp
     restart: always
+
+  universalforwarder:
+    environment:
+      SPLUNK_START_ARGS: --accept-license
+      SPLUNK_PASSWORD: ${SPLUNK_PASSWORD}
+    image: splunk/universalforwarder:latest
