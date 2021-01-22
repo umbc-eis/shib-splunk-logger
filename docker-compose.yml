@@ -23,7 +23,7 @@ services:
       context: ./logrotate
     environment:
       - ALL_LOGS_DIRECTORIES=/var/log/umbc-idp
-      - LOGROTATE_INTERVAL=hourly
+      - LOGROTATE_INTERVAL=daily
     image: umbc/idp-logrotate:latest
     volumes:
       - logs-vol:/var/log/umbc-idp
