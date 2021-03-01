@@ -11,10 +11,13 @@ services:
       - logs-vol:/var/log/umbc-idp
 
   universalforwarder:
+    build:
+      context: ./universalforwarder
     environment:
       SPLUNK_START_ARGS: --accept-license
       SPLUNK_PASSWORD: ${SPLUNK_PASSWORD}
-    image: splunk/universalforwarder:latest
+    image: umbc/idp-universalforwarder:latest
+    restart: always
     volumes:
       - logs-vol:/var/log/umbc-idp
 
@@ -25,6 +28,7 @@ services:
       - ALL_LOGS_DIRECTORIES=/var/log/umbc-idp
       - LOGROTATE_INTERVAL=daily
     image: umbc/idp-logrotate:latest
+    restart: always
     volumes:
       - logs-vol:/var/log/umbc-idp
 
