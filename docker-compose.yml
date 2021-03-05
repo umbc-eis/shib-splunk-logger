@@ -4,6 +4,11 @@ services:
     build:
       context: ./syslog
     image: umbc/idp-logger:latest
+    logging:
+      driver: json-file
+      options:
+        max-file: "30"
+        max-size: "30m"
     ports:
       - 5140:514/udp
     restart: always
