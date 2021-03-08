@@ -1,3 +1,4 @@
 FROM splunk/universalforwarder:latest
-ADD local /opt/splunkforwarder/etc/system/local/
-#ADD splunk_common/* /opt/ansible/roles/splunk_common/tasks/
+ADD --chown=splunk local /tmp/local/
+ADD entrypoint.sh /usr/local/sbin/entrypoint.sh
+ENTRYPOINT [ "/usr/local/sbin/entrypoint.sh", "start-service" ]
