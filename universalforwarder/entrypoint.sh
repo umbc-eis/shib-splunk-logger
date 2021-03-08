@@ -4,6 +4,7 @@
 # for /opt/splunkforwarder/etc - so we can't ADD files there in the Dockerfile
 #
 if [ -d /tmp/local ]; then
+   /bin/sudo -u splunk sed -i "s/_SPLUNK_DEFAULT_HOSTNAME_/${SPLUNK_DEFAULT_HOSTNAME}/g" /tmp/local/*
    /bin/sudo -u splunk cp -p /tmp/local/* /opt/splunkforwarder/etc/system/local
    /bin/sudo -u splunk rm -rf /tmp/local
 fi

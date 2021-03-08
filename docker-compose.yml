@@ -21,6 +21,7 @@ services:
     environment:
       SPLUNK_START_ARGS: --accept-license
       SPLUNK_PASSWORD: ${SPLUNK_PASSWORD}
+      SPLUNK_DEFAULT_HOSTNAME: ${SPLUNK_DEFAULT_HOSTNAME}
     image: umbc/idp-universalforwarder:latest
     restart: always
     volumes:
