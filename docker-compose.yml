@@ -9,6 +9,8 @@ services:
       options:
         max-file: "30"
         max-size: "30m"
+    ports:
+      - 24224:24224/tcp
     volumes:
       - /root/idp-logger/fluentd/temp:/var/log/idp
 
