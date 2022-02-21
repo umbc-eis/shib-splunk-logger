@@ -13,7 +13,7 @@ services:
       - 24224:24224/tcp
     restart: always
     volumes:
-      - temp-logs-vol:/fluentd/log
+      - logs-vol:/var/log/umbc-idp
 
   universalforwarder:
     build:
@@ -27,9 +27,7 @@ services:
     image: umbc/idp-universalforwarder:latest
     restart: always
     volumes:
-      - logs-vol:/var/log/umbc-idp
-      - temp-logs-vol:/var/log/fluentd-test:ro
+      - logs-vol:/var/log/umbc-idp:ro
 
 volumes:
   logs-vol:
-  temp-logs-vol:
