@@ -11,23 +11,9 @@ services:
         max-size: "30m"
     ports:
       - 24224:24224/tcp
-    volumes:
-      - /root/idp-logger/fluentd/temp:/var/log/idp
-
-  syslog:
-    build:
-      context: ./syslog
-    image: umbc/idp-logger:latest
-    logging:
-      driver: json-file
-      options:
-        max-file: "30"
-        max-size: "30m"
-    ports:
-      - 5140:514/udp
     restart: always
     volumes:
-      - logs-vol:/var/log/umbc-idp
+      - temp-logs-vol:/fluentd/log
 
   universalforwarder:
     build:
@@ -42,17 +28,8 @@ services:
     restart: always
     volumes:
       - logs-vol:/var/log/umbc-idp
-
-  logrotate:
-    build:
-      context: ./logrotate
-    environment:
-      - ALL_LOGS_DIRECTORIES=/var/log/umbc-idp
-      - LOGROTATE_INTERVAL=daily
-    image: umbc/idp-logrotate:latest
-    restart: always
-    volumes:
-      - logs-vol:/var/log/umbc-idp
+      - temp-logs-vol:/var/log/fluentd-test:ro
 
 volumes:
   logs-vol:
+  temp-logs-vol:
