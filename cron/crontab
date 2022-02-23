@@ -1,0 +1,2 @@
+# times are UTC
+30 7 * * * /bin/find /var/log/umbc-idp -type f -mtime +7 -exec /bin/rm -f {} \;

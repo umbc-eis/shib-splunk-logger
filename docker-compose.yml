@@ -29,5 +29,18 @@ services:
     volumes:
       - logs-vol:/var/log/umbc-idp:ro
 
+  cron:
+    build:
+      context: ./cron
+    image: umbc/idp-logpruner:latest
+    logging:
+      driver: json-file
+      options:
+        max-file: "30"
+        max-size: "30m"
+    restart: always
+    volumes:
+      - logs-vol:/var/log/umbc-idp
+
 volumes:
   logs-vol:
