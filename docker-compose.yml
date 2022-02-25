@@ -3,7 +3,7 @@ services:
   fluentd:
     build:
       context: ./fluentd
-    image: umbc/idp-fluentd:latest
+    image: ghcr.io/umbc-eis/idp-logger-fluentd:latest
     logging:
       driver: json-file
       options:
@@ -24,7 +24,7 @@ services:
       SPLUNK_DEFAULT_HOSTNAME: ${SPLUNK_DEFAULT_HOSTNAME}
       SPLUNK_PASS4SYMMKEY: ${SPLUNK_PASS4SYMMKEY}
       SPLUNK_SERVER: ${SPLUNK_SERVER}
-    image: umbc/idp-universalforwarder:latest
+    image: ghcr.io/umbc-eis/idp-logger-splunk-uf:latest
     restart: always
     volumes:
       - logs-vol:/var/log/umbc-idp:ro
@@ -32,7 +32,7 @@ services:
   cron:
     build:
       context: ./cron
-    image: umbc/idp-logpruner:latest
+    image: ghcr.io/umbc-eis/idp-logger-cron:latest
     logging:
       driver: json-file
       options:
