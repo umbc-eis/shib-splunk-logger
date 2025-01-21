@@ -1,4 +1,4 @@
-FROM fluent/fluentd:v1.14-debian
+FROM fluent/fluentd:v1.18-debian-1
 USER root
 RUN /usr/local/bin/gem install fluent-plugin-rewrite-tag-filter
 # Create mount point for logs volume
