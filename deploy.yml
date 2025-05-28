@@ -1,8 +1,6 @@
 version: '3.1'
 services:
   fluentd:
-    build:
-      context: ./fluentd
     image: ghcr.io/umbc-eis/idp-logger-fluentd:latest
     logging:
       driver: json-file
@@ -16,8 +14,6 @@ services:
       - logs-vol:/var/log/umbc-idp
 
   universalforwarder:
-    build:
-      context: ./universalforwarder
     environment:
       SPLUNK_START_ARGS: --accept-license
       SPLUNK_PASSWORD: ${SPLUNK_PASSWORD}
@@ -30,8 +26,6 @@ services:
       - logs-vol:/var/log/umbc-idp:ro
 
   cron:
-    build:
-      context: ./cron
     image: ghcr.io/umbc-eis/idp-logger-cron:latest
     logging:
       driver: json-file

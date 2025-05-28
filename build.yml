@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+  fluentd:
+    build:
+      context: ./fluentd
+    image: ghcr.io/umbc-eis/idp-logger-fluentd:latest
+
+  universalforwarder:
+    build:
+      context: ./universalforwarder
+    image: ghcr.io/umbc-eis/idp-logger-splunk-uf:latest
+
+  cron:
+    build:
+      context: ./cron
+    image: ghcr.io/umbc-eis/idp-logger-cron:latest
